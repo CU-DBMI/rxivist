@@ -15,9 +15,11 @@ LABEL maintainer="rxivist@umn.edu"
 
 LABEL org.label-schema.version = "1.1.0"
 
+COPY ./requirements.txt /tmp/requirements.txt
+RUN pip install -r /tmp/requirements.txt
+
 ADD . /app
 WORKDIR /app
-RUN pip install -r requirements.txt
 
 HEALTHCHECK --start-period=30s --interval=120s --timeout=15s CMD curl --fail http://localhost/v1/papers?page_size=3 || exit 1
 
