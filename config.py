@@ -23,7 +23,7 @@ summary_download_age = 14
 # all the Rxivist data
 db = {
   "host": os.environ['RX_DBHOST'],
-  "db": "rxdb",
+  "db": os.environ.get('RX_DATABASE', "rxdb"),
   "user": os.environ['RX_DBUSER'],
   "password": os.environ['RX_DBPASSWORD'],
   "schema": 'prod', # Each environment has a schema, theoretically
@@ -37,7 +37,7 @@ db = {
 # Hostname (and protocol) where users will find your site.
 # This is needed to build redirect URLs that don't
 # break when the web server is behind a reverse proxy.
-host = "https://api.url_goes_in_here.org"
+host = "https://rxivist-api.greenelab.com"
 
 # Whether to launch the application with gunicorn as the web server, or
 # with Bottle's default. The default can be handy for development because

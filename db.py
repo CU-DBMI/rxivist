@@ -54,11 +54,11 @@ class Connection(object):
         options=f'-c search_path={config.db["schema"]}'
       )
       self.db.set_session(autocommit=True)
-    except:
+    except Exception as ex:
       if attempts >= config.db["connection"]["max_attempts"]:
         print("Giving up.")
         raise RuntimeError("Failed to connect to database.")
-      print(f'Connection to DB failed. Retrying in {config.db["connection"]["attempt_pause"] * attempts} seconds.')
+      print(f'Connection to DB failed (reason?: {str(ex)}). Retrying in {config.db["connection"]["attempt_pause"] * attempts} seconds.')
       time.sleep(config.db["connection"]["attempt_pause"] * attempts)
       self._attempt_connect(attempts)
 

@@ -1,4 +1,4 @@
-FROM python:3
+FROM python:3.8
 # NOTE: The python:alpine image would be lovely
 # to use here, but it isn't compatible with the
 # postgres SDK, per this issue:
